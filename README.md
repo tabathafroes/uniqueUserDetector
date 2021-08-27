@@ -1,4 +1,4 @@
-# Unique User Detector
+# Unique User Detector - PI - ADS Fatec
 ## Integrates
 #### - Angelo Victor Lima
 #### - Caique Fernandes
