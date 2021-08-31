@@ -31,7 +31,7 @@
       <tr>
         <td>Develop</td>
         <td>José Henrique dos Santos</td>
-        <td> <a href= "https://www.linkedin.com/">Linkedin</a></td>
+        <td> <a href= "https://www.linkedin.com/in/jos%C3%A9-henrique-b01291207/">Linkedin</a></td>
         <td> <a href= "https://github.com/josehcz">Github</a></td>
       </tr>
       <tr>
