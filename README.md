@@ -1,5 +1,8 @@
 # Unique User Detector - API - ADS Fatec
 
+Uma aplicação para identificação de usuários unicos através de device fingerprint. Trabalho realizado em parceria com a UOL e FATEC.
+
+### 	:two_women_holding_hands: Team <a name="team"></a>
 <table>
     <thead>
     </thead>
