@@ -2,6 +2,17 @@
 
 Uma aplicação para identificação de usuários unicos através de device fingerprint. Trabalho realizado em parceria com a UOL e FATEC.
 
+### :bookmark_tabs: Backlog <a name="backlog"></a>
+
+
+|  Sprint 1  |  Sprint 2 | Sprint 3  |  Sprint 4 |
+|---|---|---|---|
+|Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |
+|Criação da tabela da entidade usuário para que a partir do mesmo obter o serial number e o ip externo   | Cruzar dados no back-end com IA: do ip externo com o serial number    |   |Criação do método de exibir usuário com ID único com IA. A IA vai aprender a perceber comportamentos incomuns de usuários e dar uma lista desses usuários   |
+|Criação do método para rastreiar o serial number do usuário   |   |   |   |
+|Criação do método para rastreiar o ip externo do usuário   |   |   |   |
+|Criação do método de exbir usuário com ID  único   |   |   |   |
+
 ### 	:two_women_holding_hands: Team <a name="team"></a>
 <table>
     <thead>
