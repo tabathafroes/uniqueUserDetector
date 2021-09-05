@@ -12,6 +12,7 @@ Uma aplicação para identificação de usuários unicos através de device fing
 |Criação do método para rastreiar o serial number do usuário   |   |   |   |
 |Criação do método para rastreiar o ip externo do usuário   |   |   |   |
 |Criação do método de exbir usuário com ID  único   |   |   |   |
+|Criação do método de cadastro de usuário  |   |   |   |
 
 ### 	:two_women_holding_hands: Team <a name="team"></a>
 <table>
