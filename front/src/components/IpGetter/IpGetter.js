@@ -14,7 +14,7 @@ function IpGetter(){
   useEffect( () => {
     getData()
 
-  }, [])
+  }, []);
   return (
     <div className="IpGetter">
       <h2>Your IP Address is</h2>

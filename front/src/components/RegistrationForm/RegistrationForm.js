@@ -1,8 +1,20 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { API_BASE_URL } from '../../constants/apiConstants';
 
 function RegistrationForm(props) {
+    const [ip, setIP] = useState('');
+
+    const getData = async () => {
+      const res = await axios.get('https://geolocation-db.com/json/')
+      console.log(res.data);
+      setIP(res.data.IPv4)
+    }
+    
+    useEffect( () => {
+      getData()
+  
+    }, []);
     const [state , setState] = useState({
         email : "",
         password : ""
@@ -53,7 +65,7 @@ function RegistrationForm(props) {
     }
 
     return(
-            <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+            <div className="login-card">
                 <form>
                     <div className="form-group text-left">
                     <label htmlFor="exampleInputEmail1">Email address</label>
@@ -61,18 +73,16 @@ function RegistrationForm(props) {
                         className="form-control" 
                         id="email" 
                         aria-describedby="emailHelp" 
-                        placeholder="Enter email"
                         value={state.email}
                         onChange={handleChange}
                     />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <small id="emailHelp" className="form-text">We'll never share your email with anyone else.</small>
                     </div>
                     <div className="form-group text-left">
                         <label htmlFor="exampleInputPassword1">Password</label>
                         <input type="password" 
                             className="form-control" 
                             id="password" 
-                            placeholder="Password"
                             value={state.password}
                             onChange={handleChange}
                         />
@@ -82,12 +92,15 @@ function RegistrationForm(props) {
                         <input type="password" 
                             className="form-control" 
                             id="confirmPassword" 
-                            placeholder="Confirm Password"
                         />
+                    </div>
+                    <div className="form-group text-left">
+                        <label htmlFor="exampleInputPassword1">IP Address</label>
+                        <input type="text" className="form-control" value={ip} disabled/>
                     </div>
                     <button 
                         type="submit" 
-                        className="btn btn-primary"
+                        className="btn-send"
                         onClick={handleSubmitClick}
                     >
                         Register

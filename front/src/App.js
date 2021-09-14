@@ -14,7 +14,7 @@ function App() {
           <Switch>
             <Route path="/" exact={true}>
               <RegistrationForm/>
-              <IpGetter/>
+              {/* <IpGetter/> */}
             </Route>
           </Switch>
         </div>
