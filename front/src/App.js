@@ -2,7 +2,6 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css';
 import Header from './components/Header/Header';
-import IpGetter from './components/IpGetter/IpGetter';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm'
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
           <Switch>
             <Route path="/" exact={true}>
               <RegistrationForm/>
-              {/* <IpGetter/> */}
             </Route>
           </Switch>
         </div>
