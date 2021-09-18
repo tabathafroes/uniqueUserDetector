@@ -7,12 +7,13 @@ Uma aplicação para identificação de usuários unicos através de device fing
 
 |  Sprint 1  |  Sprint 2 | Sprint 3  |  Sprint 4 |
 |---|---|---|---|
-|Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |Criação da tela de cadastro para obter o serial number e o ip do usuário em um tipo de plataforma   |
-|Criação da tabela da entidade usuário para que a partir do mesmo obter o serial number e o ip externo   | Cruzar dados no back-end com IA: do ip externo com o serial number    |   |Criação do método de exibir usuário com ID único com IA. A IA vai aprender a perceber comportamentos incomuns de usuários e dar uma lista desses usuários   |
-|Criação do método para rastreiar o serial number do usuário   |   |   |   |
+|Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional Windows   |Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional Linux   |Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional Android   |Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional IOS   |
+|Criação da tabela da entidade usuário para que a partir do mesmo obter o serial number e o ip externo   | Cruzar dados no back-end com IA: do ip externo com o serial number    | Treinamento de dados para a IA  |Criação do método de exibir usuário com ID único com IA. A IA vai aprender a perceber comportamentos incomuns de usuários e dar uma lista desses usuários   |
+|Criação do método para rastreiar o serial number do usuário   |Criação e desenvolvimento da IA   |   | Automação da IA  |
 |Criação do método para rastreiar o ip externo do usuário   |   |   |   |
 |Criação do método de exbir usuário com ID  único   |   |   |   |
 |Criação do método de cadastro de usuário  |   |   |   |
+|Planejar funcionamento da IA  |   |   |   |
 
 ### 	:two_women_holding_hands: Team <a name="team"></a>
 <table>
