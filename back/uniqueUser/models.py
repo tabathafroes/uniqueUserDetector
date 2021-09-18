@@ -13,32 +13,34 @@ class Usuario(models.Model):
     email = models.CharField(max_length=50)
     telefone = models.BigIntegerField()
     senha = models.CharField(max_length=20)
+    ip = models.CharField(max_length=50, blank=True, null=True)
+    serial_number = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         db_table = 'usuario'
 
 
-class Ip(models.Model):
-    ip_id = models.BigAutoField(primary_key=True)
-    ip = models.BigIntegerField(blank=True, null=True)
-    usuario_id = models.ForeignKey(Usuario, models.DO_NOTHING)
+# class Ip(models.Model):
+#     ip_id = models.BigAutoField(primary_key=True)
+#     ip = models.BigIntegerField(blank=True, null=True)
+#     usuario_id = models.ForeignKey(Usuario, models.DO_NOTHING)
 
-    class Meta:
-        db_table = 'ip'
-
-
-class SerialNumber(models.Model):
-    serial_number_id = models.BigAutoField(primary_key=True)
-    serial_number = models.CharField(max_length=50, blank=True, null=True)
-    usuario_id = models.ForeignKey(Usuario, models.DO_NOTHING)
-
-    class Meta:
-        db_table = 'serial_number'
+#     class Meta:
+#         db_table = 'ip'
 
 
-class UsuarioUnico(models.Model):
-    usuario_unico_id = models.BigAutoField(primary_key=True)
-    usuario = models.ForeignKey(Usuario, models.DO_NOTHING)
+# class SerialNumber(models.Model):
+#     serial_number_id = models.BigAutoField(primary_key=True)
+#     serial_number = models.CharField(max_length=50, blank=True, null=True)
+#     usuario_id = models.ForeignKey(Usuario, models.DO_NOTHING)
 
-    class Meta:
-        db_table = 'usuario_unico'
+#     class Meta:
+#         db_table = 'serial_number'
+
+
+# class UsuarioUnico(models.Model):
+#     usuario_unico_id = models.BigAutoField(primary_key=True)
+#     usuario = models.ForeignKey(Usuario, models.DO_NOTHING)
+
+#     class Meta:
+#         db_table = 'usuario_unico'
