@@ -1,9 +1,27 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import { API_BASE_URL } from '../../constants/apiConstants';
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
 function RegistrationForm(props) {
     const [ip, setIP] = useState('');
+
+    //Fingerprint
+    const fpPromise = FingerprintJS.load()
+
+    ;(async () => {
+        // Get the visitor identifier when you need it.
+        const fp = await fpPromise
+        const result = await fp.get()
+      
+        // This is the visitor identifier:
+        const visitorId = result.visitorId
+        console.log(visitorId)
+        console.log(result)
+        console.log(result.confidence.score)
+        //console.log(result.confidence.comment)
+      })()
+    //////
 
     const getData = async () => {
       const res = await axios.get('https://geolocation-db.com/json/')
