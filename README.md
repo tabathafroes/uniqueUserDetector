@@ -1,6 +1,14 @@
 # Unique User Detector - API - ADS Fatec
 
-Uma aplicação para identificação de usuários unicos através de device fingerprint. Trabalho realizado em parceria com a UOL e FATEC.
+#### 🚧  Em desenvolvimento  🚧
+
+Uma aplicação para identificação de usuários únicos. Diante da captação dos dados de entropia dos usuários que se cadastrarem no sistema, a aplicação utiliza vários parâmetros e realiza a comparação entre os dados captados, gerando um hash de identificação única para cada usuário que se cadastrou no sistema. 
+
+Diante dos datasets coletados pelo sistema, uma inteligência artificial é responsável pela identificação dos usuários utilizando os mesmos dados de entropia, gerando então uma aplicação visual dos usuários únicos do sistema.
+
+Muitas tecnologias de análise não identificam usuários únicos em vários dispositivos ou sessões. Toda vez que alguém muda para um dispositivo diferente ou inicia uma nova sessão, um novo usuário é contado. Por exemplo, a mesma pessoa que interage com seu conteúdo em um smartphone e em um tablet registra duas sessões e, assim, é contabilizada como dois usuários na maioria das soluções de análise. A identificação dos usuários únicos em sistema de cadastro possibilita a identificação da criação de "Contas Fraude" que podem ser utilizadas para disparo de e-mails em massa, conteúdos impróprios. Assim como podem ser utilizadas para o bem em obter dados de usuários reais que acessam o sistema, gerando métricas e alcances precisos em sistemas de análise.
+
+Trabalho realizado em parceria com a UOL e FATEC.
 
 ### :bookmark_tabs: Backlog <a name="backlog"></a>
 
