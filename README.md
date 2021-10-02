@@ -1,19 +1,25 @@
 # Unique User Detector - API - ADS Fatec
 
-Uma aplicação para identificação de usuários unicos através de device fingerprint. Trabalho realizado em parceria com a UOL e FATEC.
+#### 🚧  Em desenvolvimento  🚧
+
+Uma aplicação para identificação de usuários únicos. Diante da captação dos dados de entropia dos usuários que se cadastrarem no sistema, a aplicação utiliza vários parâmetros e realiza a comparação entre os dados captados, gerando um hash de identificação única para cada usuário que se cadastrou no sistema. 
+
+Diante dos datasets coletados pelo sistema, uma inteligência artificial é responsável pela identificação dos usuários utilizando os mesmos dados de entropia, gerando então uma aplicação visual dos usuários únicos do sistema.
+
+Muitas tecnologias de análise não identificam usuários únicos em vários dispositivos ou sessões. Toda vez que alguém muda para um dispositivo diferente ou inicia uma nova sessão, um novo usuário é contado. Por exemplo, a mesma pessoa que interage com seu conteúdo em um smartphone e em um tablet registra duas sessões e, assim, é contabilizada como dois usuários na maioria das soluções de análise. A identificação dos usuários únicos em sistema de cadastro possibilita a identificação da criação de "Contas Fraude" que podem ser utilizadas para disparo de e-mails em massa, conteúdos impróprios. Assim como podem ser utilizadas para o bem em obter dados de usuários reais que acessam o sistema, gerando métricas e alcances precisos em sistemas de análise.
+
+Trabalho realizado em parceria com a UOL e FATEC.
 
 ### :bookmark_tabs: Backlog <a name="backlog"></a>
 
 
 |  Sprint 1  |  Sprint 2 | Sprint 3  |  Sprint 4 |
 |---|---|---|---|
-|Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional Windows   |Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional Linux   |Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional Android   |Criação da tela de cadastro para obter o serial number e o ip do usuário que utiliza o sistema operacional IOS   |
-|Criação da tabela da entidade usuário para que a partir do mesmo obter o serial number e o ip externo   | Cruzar dados no back-end com IA: do ip externo com o serial number    | Treinamento de dados para a IA  |Criação do método de exibir usuário com ID único com IA. A IA vai aprender a perceber comportamentos incomuns de usuários e dar uma lista desses usuários   |
-|Criação do método para rastreiar o serial number do usuário   |Criação e desenvolvimento da IA   |   | Automação da IA  |
-|Criação do método para rastreiar o ip externo do usuário   |   |   |   |
-|Criação do método de exbir usuário com ID  único   |   |   |   |
-|Criação do método de cadastro de usuário  |   |   |   |
-|Planejar funcionamento da IA  |   |   |   |
+|Captação dos dados de entropia do usuário em todos os navegadores|Validações e regras de negócio aplicadas nos dados de entropia|Comparações de informações entre os dados de entropia e o hash gerado pelo sistema| Criação do método de exibir usuário com ID único com IA. A IA vai aprender a perceber comportamentos incomuns de usuários e dar uma lista desses usuários|
+|Criação da tela de cadastro para obter os dados de entropia do usuário|Criação e configuração inicial da Inteligência Artificial|Treinamento da Inteligência Artificial utilizando o dataset gerado pela comparação de dados de entropia e hash|Exibição geral dos usuários únicos no sistema recebidos pela inteligência artificial|
+|Criação e modelagem do banco de dados com as entidades necessárias|Integração entre o front-end, back-end e banco de dados|Alteração da tela de exibição dos usuários do sistema, para exibição apenas dos usuários únicos |Automatização da inteligencia artificial|
+|Planejamento da Inteligência Artificial e configurações iniciais|Criação da tela de exibição dos usuários do sistema| | | |
+|Criação dos métodos de cadastro e captação dos dados no back-end| | | |
 
 ### 	:two_women_holding_hands: Team <a name="team"></a>
 <table>
