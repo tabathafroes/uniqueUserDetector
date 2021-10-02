@@ -9,38 +9,30 @@ from django.db import models
 
 class Usuario(models.Model):
     usuario_id = models.BigAutoField(primary_key=True)
-    nome = models.CharField(max_length=40)
-    email = models.CharField(max_length=50)
+    nome = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
     telefone = models.BigIntegerField()
-    senha = models.CharField(max_length=20)
-    ip = models.CharField(max_length=50, blank=True, null=True)
-    serial_number = models.CharField(max_length=50, blank=True, null=True)
+    senha = models.CharField(max_length=100)
 
     class Meta:
+        managed = False
         db_table = 'usuario'
 
+class DadosEntropicosUser(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
+    cookies_enabled = models.BooleanField()
+    device_memory = models.BigIntegerField()
+    hardware_concurrency = models.BigIntegerField()
+    languages = models.CharField(max_length=20)
+    local_storage = models.BooleanField()
+    platform = models.CharField(max_length=20)
+    session_storage = models.BooleanField()
+    timezone = models.CharField(max_length=50)
+    touch_support = models.BooleanField()
+    vendor = models.CharField(max_length=50)
+    vendor_flavors = models.CharField(max_length=50)
 
-# class Ip(models.Model):
-#     ip_id = models.BigAutoField(primary_key=True)
-#     ip = models.BigIntegerField(blank=True, null=True)
-#     usuario_id = models.ForeignKey(Usuario, models.DO_NOTHING)
-
-#     class Meta:
-#         db_table = 'ip'
-
-
-# class SerialNumber(models.Model):
-#     serial_number_id = models.BigAutoField(primary_key=True)
-#     serial_number = models.CharField(max_length=50, blank=True, null=True)
-#     usuario_id = models.ForeignKey(Usuario, models.DO_NOTHING)
-
-#     class Meta:
-#         db_table = 'serial_number'
-
-
-# class UsuarioUnico(models.Model):
-#     usuario_unico_id = models.BigAutoField(primary_key=True)
-#     usuario = models.ForeignKey(Usuario, models.DO_NOTHING)
-
-#     class Meta:
-#         db_table = 'usuario_unico'
+    class Meta:
+        managed = False
+        db_table = 'dados_entropicos_user'
