@@ -4,25 +4,31 @@ import { API_BASE_URL } from '../../constants/apiConstants';
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
 function RegistrationForm(props) {
+
+    const [state , setState] = useState({
+        nome : "",
+        email : "",
+        telefone: "",
+        password : "",
+        confirmPassword: ""
+    })
     const [ip, setIP] = useState('');
 
     //Fingerprint
-    const fpPromise = FingerprintJS.load()
+    const fpPromise = FingerprintJS.load();
 
-    ;(async () => {
-        // Get the visitor identifier when you need it.
+    const fingerprint = async () => {
+        
         const fp = await fpPromise
         const result = await fp.get()
-      
-        // This is the visitor identifier:
         const visitorId = result.visitorId
         console.log(visitorId)
         console.log(result)
         console.log(result.confidence.score)
-        //console.log(result.confidence.comment)
-      })()
-    //////
 
+        return result.components
+      }
+ 
     const getData = async () => {
       const res = await axios.get('https://geolocation-db.com/json/')
       console.log(res.data);
@@ -33,12 +39,7 @@ function RegistrationForm(props) {
       getData()
   
     }, []);
-    const [state , setState] = useState({
-        nome : "",
-        email : "",
-        telefone: "",
-        password : ""
-    })
+    
     const handleChange = (e) => {
         const {id , value} = e.target   
         setState(prevState => ({
@@ -48,6 +49,7 @@ function RegistrationForm(props) {
     }
     const handleSubmitClick = (e) => {
         e.preventDefault();
+        debugger
         if(state.password === state.confirmPassword) {
             sendDetailsToServer()    
         } else {
@@ -55,15 +57,34 @@ function RegistrationForm(props) {
         }
     }
 
-    const sendDetailsToServer = () => {
+    const sendDetailsToServer = async () => {
+
+        const dadosDoUsuario = await fingerprint()
+
         if(state.email.length && state.password.length) {
-            props.showError(null);
+            // props.showError(null);
             const payload={
                 "nome": state.nome,
                 "email":state.email,
                 "telefone": state.telefone,
                 "password":state.password,
+                "cookiesEnabled": dadosDoUsuario.cookiesEnabled,
+                "deviceMemory": dadosDoUsuario.deviceMemory,
+                "fontPreferences": dadosDoUsuario.fontPreferences,
+                "fonts": dadosDoUsuario.fonts,
+                "hardwareConcurrency": dadosDoUsuario.hardwareConcurrency,
+                "languages": dadosDoUsuario.languages,
+                "localStorage": dadosDoUsuario.localStorage,
+                "plataform": dadosDoUsuario.platform,
+                "plugins": dadosDoUsuario.plugins,
+                "sessionStorage": dadosDoUsuario.sessionStorage,
+                "timezone": dadosDoUsuario.timezone,
+                "touchSupport": dadosDoUsuario.touchSupport,
+                "vendor": dadosDoUsuario.vendor,
+                "vendorFlavors": dadosDoUsuario.vendorFlavors
+
             }
+            debugger
             axios.post(API_BASE_URL+'/user/register', payload)
                 .then(function (response) {
                     if(response.status === 200){
@@ -131,6 +152,8 @@ function RegistrationForm(props) {
                         <input type="password" 
                             className="form-control" 
                             id="confirmPassword" 
+                            value={state.confirmPassword}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="form-group text-left">
