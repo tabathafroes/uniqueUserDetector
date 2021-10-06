@@ -49,7 +49,6 @@ function RegistrationForm(props) {
     }
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        debugger
         if(state.password === state.confirmPassword) {
             sendDetailsToServer()    
         } else {
@@ -68,24 +67,21 @@ function RegistrationForm(props) {
                 "email":state.email,
                 "telefone": state.telefone,
                 "password":state.password,
-                "cookiesEnabled": dadosDoUsuario.cookiesEnabled,
-                "deviceMemory": dadosDoUsuario.deviceMemory,
-                "fontPreferences": dadosDoUsuario.fontPreferences,
-                "fonts": dadosDoUsuario.fonts,
-                "hardwareConcurrency": dadosDoUsuario.hardwareConcurrency,
-                "languages": dadosDoUsuario.languages,
-                "localStorage": dadosDoUsuario.localStorage,
-                "plataform": dadosDoUsuario.platform,
-                "plugins": dadosDoUsuario.plugins,
-                "sessionStorage": dadosDoUsuario.sessionStorage,
-                "timezone": dadosDoUsuario.timezone,
-                "touchSupport": dadosDoUsuario.touchSupport,
-                "vendor": dadosDoUsuario.vendor,
-                "vendorFlavors": dadosDoUsuario.vendorFlavors
-
+                "cookiesEnabled": dadosDoUsuario.cookiesEnabled.value,
+                "deviceMemory": dadosDoUsuario.deviceMemory.value,
+                "hardwareConcurrency": dadosDoUsuario.hardwareConcurrency.value,
+                "ip": ip,
+                "languages": dadosDoUsuario.languages.value[0][0],
+                "localStorage": dadosDoUsuario.localStorage.value,
+                "platform": dadosDoUsuario.platform.value,
+                "sessionStorage": dadosDoUsuario.sessionStorage.value,
+                "timezone": dadosDoUsuario.timezone.value,
+                "touchSupport": dadosDoUsuario.touchSupport.value.touchEvent,
+                "vendor": dadosDoUsuario.vendor.value,
+                "vendorFlavors": dadosDoUsuario.vendorFlavors.value[0]
             }
-            debugger
-            axios.post(API_BASE_URL+'/user/register', payload)
+            console.log(payload)
+            axios.post(API_BASE_URL+'/usuarios', payload)
                 .then(function (response) {
                     if(response.status === 200){
                         setState(prevState => ({
