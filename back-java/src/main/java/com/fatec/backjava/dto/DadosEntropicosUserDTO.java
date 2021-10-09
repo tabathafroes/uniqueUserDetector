@@ -27,10 +27,11 @@ public class DadosEntropicosUserDTO {
 	//private String ip;
 	private String vendor;
 	private String vendorFlavors;
+	private String hash;
 	
 	public DadosEntropicosUser toEntityInsert() {
 		return new DadosEntropicosUser(id, usuario, cookiesEnabled, deviceMemory, hardwareConcurrency, ip,
-				languages, localStorage, platform, sessionStorage, timezone, touchSupport, vendor, vendorFlavors);
+				languages, localStorage, platform, sessionStorage, timezone, touchSupport, vendor, vendorFlavors, hash);
 	}
 	
 	public DadosEntropicosUser toEntityUpdate(DadosEntropicosUser dadosEntropicosUser) {

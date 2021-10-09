@@ -1,5 +1,7 @@
 package com.fatec.backjava.resources;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class UsuarioResource {
 	@Autowired
 	private DadosEntropicosUserService dadosEntropicosUserService;
 	
-	@ApiOperation(value="Realiza a busca de um evento por seu ID")
+	@ApiOperation(value="Realiza a busca de um usuário por seu ID")
 	@GetMapping("/buscarPorId/{id}")
 	public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) throws Exception {
 		Usuario usuario = usuarioService.buscarPorId(id);
@@ -48,8 +50,15 @@ public class UsuarioResource {
 		UsuarioDTO usuarioDTO = dadosDTO.converterParaUsuario();
 		Usuario usuario = usuarioService.inserir(usuarioDTO);
 		DadosEntropicosUserDTO dadosEntropicosUserDTO = dadosDTO.converterParaDadosEntropicos(usuario);
-		dadosEntropicosUserService.inserir(dadosEntropicosUserDTO);
+		dadosEntropicosUserService.inserir(dadosEntropicosUserDTO, usuarioDTO);
 		return ResponseEntity.ok(dadosDTO);
+	}
+	
+	@ApiOperation(value="Realiza a busca de todos usuários")
+	@GetMapping("/buscarTodos")
+	public ResponseEntity<List<Usuario>> buscarTodos() {
+		List<Usuario> usuarios = usuarioService.buscarTodos();
+		return ResponseEntity.ok().body(usuarios);
 	}
 
 }

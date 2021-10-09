@@ -1,5 +1,6 @@
 package com.fatec.backjava.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -27,5 +28,9 @@ public class UsuarioService {
 		
 		usuarioRepository.save(usuario);
 		return usuario;
+	}
+	
+	public List<Usuario> buscarTodos() {
+		return usuarioRepository.findAll();
 	}
 }

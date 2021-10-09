@@ -50,4 +50,5 @@ public class DadosEntropicosUser implements Serializable{
 	private String vendor;
 	@Column(name="vendor_flavors")
 	private String vendorFlavors;
+	private String hash;
 }
