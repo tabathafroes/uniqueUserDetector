@@ -52,7 +52,7 @@ function RegistrationForm(props) {
         if(state.password === state.confirmPassword) {
             sendDetailsToServer()    
         } else {
-            props.showError('Passwords do not match');
+            alert("Passwords don't match")
         }
     }
 
