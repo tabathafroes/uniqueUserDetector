@@ -47,8 +47,11 @@ public class DadosEntropicosUser implements Serializable{
 	private String timezone;
 	@Column(name="touch_support")
 	private Boolean touchSupport;
-	private String vendor;
-	@Column(name="vendor_flavors")
-	private String vendorFlavors;
+	private String browser;
+	@Column(name="browser_version")
+	private String browserVersion;
+	private String gpu;
+	@Column(name="tempo_cadastro")
+	private String tempoCadastro;
 	private String hash;
 }

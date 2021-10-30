@@ -43,12 +43,12 @@ function RegistrationForm(props) {
         timer_is_on = 0;
     }
 
-    const [showRegister, setShowRegister] = useState(true)
+    // const [showRegister, setShowRegister] = useState(true)
 
-    function onChange(value) {
-        console.log("Captcha value:", value);
-        setShowRegister(true)
-    }
+    // function onChange(value) {
+    //     console.log("Captcha value:", value);
+    //     setShowRegister(true)
+    // }
 
     const [state, setState] = useState({
         nome: "",
@@ -111,8 +111,8 @@ function RegistrationForm(props) {
 
         const dadosDoUsuario = await fingerprint()
         const gpu = await getGPU()
-
         if (state.email.length && state.password.length) {
+
             // props.showError(null);
             const payload = {
                 "nome": state.nome,
@@ -129,10 +129,10 @@ function RegistrationForm(props) {
                 "sessionStorage": dadosDoUsuario.sessionStorage.value,
                 "timezone": dadosDoUsuario.timezone.value,
                 "touchSupport": dadosDoUsuario.touchSupport.value.touchEvent,
-                "vendor": browser.name,
-                "vendorFlavors": browser.version,
+                "browser": browser.name,
+                "browserVersion": browser.version,
                 "gpu": gpu.gpu,
-                "tempo": tempo
+                "tempoCadastro": tempo
             }
             console.log(payload)
             axios.post(API_BASE_URL + '/usuarios', payload)
@@ -210,20 +210,18 @@ function RegistrationForm(props) {
                     <label htmlFor="exampleInputPassword1">IP Address</label>
                     <input type="text" className="form-control" value={ip} disabled />
                 </div>
-                <ReCAPTCHA
+                {/* <ReCAPTCHA
                     sitekey="6LcBqvwcAAAAAG0_5v7agTDh0DyQG6BdHNgL0AmK"
                     onChange={onChange}
-                />
-                {showRegister ?
+                /> */}
                     <button
                         type="submit"
                         className="btn-send"
                         onClick={handleSubmitClick}
                     >
                         Register
-                    </button> :
-                    <label htmlFor="exampleInputPassword1">Please use ReCaptcha</label>
-                }
+                    </button>
+                    {/* <label htmlFor="exampleInputPassword1">Please use ReCaptcha</label> */}
             </form>
         </div>
     )

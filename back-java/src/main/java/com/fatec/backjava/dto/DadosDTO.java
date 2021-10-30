@@ -25,8 +25,10 @@ public class DadosDTO {
 	private Boolean sessionStorage;
 	private String timezone;
 	private Boolean touchSupport;
-	private String vendor;
-	private String vendorFlavors;
+	private String browser;
+	private String browserVersion;
+	private String gpu;
+	private String tempoCadastro;
 	
 	public DadosEntropicosUserDTO converterParaDadosEntropicos(Usuario usuario) {
 		DadosEntropicosUserDTO dadosEntropicosUserDTO = new DadosEntropicosUserDTO();
@@ -41,8 +43,10 @@ public class DadosDTO {
 		dadosEntropicosUserDTO.setSessionStorage(this.sessionStorage);
 		dadosEntropicosUserDTO.setTimezone(this.timezone);
 		dadosEntropicosUserDTO.setTouchSupport(this.touchSupport);
-		dadosEntropicosUserDTO.setVendor(this.vendor);
-		dadosEntropicosUserDTO.setVendorFlavors(this.vendorFlavors);
+		dadosEntropicosUserDTO.setBrowser(this.browser);
+		dadosEntropicosUserDTO.setBrowserVersion(this.browserVersion);
+		dadosEntropicosUserDTO.setGpu(this.gpu);
+		dadosEntropicosUserDTO.setTempoCadastro(this.tempoCadastro);
 		return dadosEntropicosUserDTO;
 	}
 	

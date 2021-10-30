@@ -14,7 +14,7 @@ public class MD5 {
     			dadosEntropicosUser.getDeviceMemory() +
     			dadosEntropicosUser.getHardwareConcurrency() +
     			dadosEntropicosUser.getPlatform() +
-    			dadosEntropicosUser.getVendorFlavors();
+    			dadosEntropicosUser.getBrowserVersion();
     	String veridigit = dadosEntropicosUser.getIp().substring(dadosEntropicosUser.getIp().length() - 1);
     	
         MessageDigest m = MessageDigest.getInstance("MD5");

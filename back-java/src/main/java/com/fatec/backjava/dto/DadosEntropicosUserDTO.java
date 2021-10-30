@@ -24,14 +24,16 @@ public class DadosEntropicosUserDTO {
 	private Boolean sessionStorage;
 	private String timezone;
 	private Boolean touchSupport;
-	//private String ip;
-	private String vendor;
-	private String vendorFlavors;
+	private String browser;
+	private String browserVersion;
+	private String gpu;
+	private String tempoCadastro;
 	private String hash;
 	
 	public DadosEntropicosUser toEntityInsert() {
 		return new DadosEntropicosUser(id, usuario, cookiesEnabled, deviceMemory, hardwareConcurrency, ip,
-				languages, localStorage, platform, sessionStorage, timezone, touchSupport, vendor, vendorFlavors, hash);
+				languages, localStorage, platform, sessionStorage, timezone, touchSupport, browser, browserVersion, 
+				gpu, tempoCadastro, hash);
 	}
 	
 	public DadosEntropicosUser toEntityUpdate(DadosEntropicosUser dadosEntropicosUser) {
@@ -46,8 +48,10 @@ public class DadosEntropicosUserDTO {
 		dadosEntropicosUser.setSessionStorage(this.sessionStorage);
 		dadosEntropicosUser.setTimezone(this.timezone);
 		dadosEntropicosUser.setTouchSupport(this.touchSupport);
-		dadosEntropicosUser.setVendor(this.vendor);
-		dadosEntropicosUser.setVendorFlavors(this.vendorFlavors);
+		dadosEntropicosUser.setBrowser(this.browser);
+		dadosEntropicosUser.setBrowserVersion(this.browserVersion);
+		dadosEntropicosUser.setGpu(this.gpu);
+		dadosEntropicosUser.setTempoCadastro(this.tempoCadastro);
 		return dadosEntropicosUser;
 	}
 }
