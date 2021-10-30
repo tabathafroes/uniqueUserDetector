@@ -9,12 +9,11 @@ import com.fatec.backjava.dto.UsuarioDTO;
 public class MD5 {
 
     public String encrypt(DadosEntropicosUser dadosEntropicosUser, UsuarioDTO usuarioDTO) throws Exception {
-    	String dados =  usuarioDTO.getTelefone() + 
-    			dadosEntropicosUser.getIp() +
+    	String dados =
     			dadosEntropicosUser.getDeviceMemory() +
     			dadosEntropicosUser.getHardwareConcurrency() +
     			dadosEntropicosUser.getPlatform() +
-    			dadosEntropicosUser.getBrowserVersion();
+    			dadosEntropicosUser.getGpu();
     	String veridigit = dadosEntropicosUser.getIp().substring(dadosEntropicosUser.getIp().length() - 1);
     	
         MessageDigest m = MessageDigest.getInstance("MD5");
