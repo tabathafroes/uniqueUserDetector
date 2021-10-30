@@ -14,6 +14,10 @@ function RegistrationForm(props) {
 
     const [tempo, setTempo]= useState()
 
+    const { detect } = require('detect-browser');
+    const browser = detect();
+
+
     useEffect(() => {
         setTimeout(() => {
            setTempo(tempo + 1);
@@ -121,12 +125,12 @@ function RegistrationForm(props) {
                 "ip": ip,
                 "languages": dadosDoUsuario.languages.value[0][0],
                 "localStorage": dadosDoUsuario.localStorage.value,
-                "platform": dadosDoUsuario.platform.value,
+                "platform": browser.os,
                 "sessionStorage": dadosDoUsuario.sessionStorage.value,
                 "timezone": dadosDoUsuario.timezone.value,
                 "touchSupport": dadosDoUsuario.touchSupport.value.touchEvent,
-                "vendor": dadosDoUsuario.vendor.value,
-                "vendorFlavors": dadosDoUsuario.vendorFlavors.value[0],
+                "vendor": browser.name,
+                "vendorFlavors": browser.version,
                 "gpu": gpu.gpu,
                 "tempo": tempo
             }

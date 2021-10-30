@@ -8,6 +8,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.3",
+    "detect-browser": "^5.2.1",
+    "detect-gpu": "^3.1.23",
     "jquery": "^3.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
