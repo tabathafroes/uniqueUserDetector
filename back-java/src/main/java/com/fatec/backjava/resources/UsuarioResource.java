@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fatec.backjava.domain.Usuario;
 import com.fatec.backjava.dto.DadosDTO;
 import com.fatec.backjava.dto.DadosEntropicosUserDTO;
+import com.fatec.backjava.dto.ListaUsuarioUnicoDTO;
 import com.fatec.backjava.dto.UsuarioDTO;
 import com.fatec.backjava.services.DadosEntropicosUserService;
 import com.fatec.backjava.services.UsuarioService;
@@ -59,6 +60,13 @@ public class UsuarioResource {
 	public ResponseEntity<List<Usuario>> buscarTodos() {
 		List<Usuario> usuarios = usuarioService.buscarTodos();
 		return ResponseEntity.ok().body(usuarios);
+	}
+	
+	@ApiOperation(value="Realiza a busca da lista de DTO de usuarios unicos")
+	@GetMapping("/buscarUsuarioComScoreDTO")
+	public ResponseEntity<List<ListaUsuarioUnicoDTO>> buscarUsuarioUnicoDTO() {
+		List<ListaUsuarioUnicoDTO> listaUsuarioUnicoDTO = usuarioService.buscarUsuarioUnicoDTO();
+		return ResponseEntity.ok().body(listaUsuarioUnicoDTO);
 	}
 
 }
