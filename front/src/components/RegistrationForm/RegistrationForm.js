@@ -1,47 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { API_BASE_URL } from '../../constants/apiConstants';
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { getGPUTier } from 'detect-gpu'
 import ReCAPTCHA from "react-google-recaptcha";
-import $ from 'jquery';
+import InputMask from 'react-input-mask';
 
 function RegistrationForm(props) {
-
-    var c = 0;
-    var t;
-    var timer_is_on = 0;
-
-    const [tempo, setTempo]= useState()
-
     const { detect } = require('detect-browser');
     const browser = detect();
-
-
-    useEffect(() => {
-        setTimeout(() => {
-           setTempo(tempo + 1);
-         }, 1000);
-         console.log(tempo)
-    
-       },[tempo]);
-
-    $("#nome").on("input", function () {
-        if ($("#nome").val().length > 1) {
-            if (!timer_is_on) {
-                timer_is_on = 1;
-                setTempo(1)
-            }
-        } else {
-            clearTimeout(t);
-            timer_is_on = 0;
-        }
-    });
-
-    function stopCount() {
-        clearTimeout(t);
-        timer_is_on = 0;
-    }
 
     // const [showRegister, setShowRegister] = useState(true)
 
@@ -54,8 +20,7 @@ function RegistrationForm(props) {
         nome: "",
         email: "",
         telefone: "",
-        password: "",
-        confirmPassword: ""
+        password: ""
     })
     const [ip, setIP] = useState('');
 
@@ -66,10 +31,6 @@ function RegistrationForm(props) {
 
         const fp = await fpPromise
         const result = await fp.get()
-        const visitorId = result.visitorId
-        console.log(visitorId)
-        console.log(result)
-        console.log(result.confidence.score)
 
         return result.components
     }
@@ -81,7 +42,6 @@ function RegistrationForm(props) {
 
     const getData = async () => {
         const res = await axios.get('https://geolocation-db.com/json/')
-        console.log(res.data);
         setIP(res.data.IPv4)
     }
 
@@ -99,28 +59,25 @@ function RegistrationForm(props) {
     }
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        if (state.password === state.confirmPassword) {
-            stopCount()
-            sendDetailsToServer()
-        } else {
-            alert("Passwords don't match")
-        }
+        sendDetailsToServer()
     }
 
     const sendDetailsToServer = async () => {
 
         const dadosDoUsuario = await fingerprint()
         const gpu = await getGPU()
+        console.log(gpu.gpu)
         if (state.email.length && state.password.length) {
-
-            // props.showError(null);
             const payload = {
-                "nome": state.nome,
                 "email": state.email,
-                "telefone": state.telefone,
+                "nome": state.nome,
                 "password": state.password,
+                "telefone": state.telefone,
+                "browser": browser.name,
+                "browserVersion": browser.version,
                 "cookiesEnabled": dadosDoUsuario.cookiesEnabled.value,
                 "deviceMemory": dadosDoUsuario.deviceMemory.value,
+                "gpu": gpu.gpu,
                 "hardwareConcurrency": dadosDoUsuario.hardwareConcurrency.value,
                 "ip": ip,
                 "languages": dadosDoUsuario.languages.value[0][0],
@@ -129,13 +86,11 @@ function RegistrationForm(props) {
                 "sessionStorage": dadosDoUsuario.sessionStorage.value,
                 "timezone": dadosDoUsuario.timezone.value,
                 "touchSupport": dadosDoUsuario.touchSupport.value.touchEvent,
-                "browser": browser.name,
-                "browserVersion": browser.version,
-                "gpu": gpu.gpu,
-                "tempoCadastro": tempo
+                "tempoCadastro": "21"
             }
-            console.log(payload)
-            axios.post(API_BASE_URL + '/usuarios', payload)
+
+            try{
+                await axios.post('http://localhost:8000/usuarios/', payload)
                 .then(function (response) {
                     if (response.status === 200) {
                         setState(prevState => ({
@@ -143,16 +98,20 @@ function RegistrationForm(props) {
                             'successMessage': 'Registration successful. Redirecting to home page..'
                         }))
                         // redirectToHome();
-                        alert(null)
+                        alert("Cadastro realizado com sucesso!")
                     } else {
-                        alert("Some error ocurred");
+                        alert("Algo de errado aconteceu.");
                     }
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                .catch(error =>{
+                    console.error('There was an error!', error)
+                })
+            } catch(e){
+                console.log('error', e)
+            }
+            
         } else {
-            alert('Please enter valid username and password')
+            alert('Por favor insira um nome, senha e email válidos.')
         }
 
     }
@@ -162,6 +121,7 @@ function RegistrationForm(props) {
             <form>
                 <div className="form-group text-left">
                     <label htmlFor="exampleInputNome1">Nome</label>
+
                     <input type="nome"
                         className="form-control"
                         id="nome"
@@ -178,15 +138,18 @@ function RegistrationForm(props) {
                         value={state.email}
                         onChange={handleChange}
                     />
+                    <span id="txt"></span>
                     <small id="emailHelp" className="form-text">We'll never share your email with anyone else.</small>
                     <div className="form-group text-left" />
                     <label htmlFor="exampleInputTelefone1">telefone</label>
-                    <input type="telefone"
+                    <InputMask
+                        type="telefone" 
                         className="form-control"
                         id="telefone"
-                        value={state.telefone}
-                        onChange={handleChange}
-                    />
+                        mask='9999-9999' 
+                        value={state.telefone} 
+                        onChange={handleChange}>
+                    </InputMask>
                 </div>
                 <div className="form-group text-left">
                     <label htmlFor="exampleInputPassword1">Password</label>
@@ -196,19 +159,6 @@ function RegistrationForm(props) {
                         value={state.password}
                         onChange={handleChange}
                     />
-                </div>
-                <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Confirm Password</label>
-                    <input type="password"
-                        className="form-control"
-                        id="confirmPassword"
-                        value={state.confirmPassword}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">IP Address</label>
-                    <input type="text" className="form-control" value={ip} disabled />
                 </div>
                 {/* <ReCAPTCHA
                     sitekey="6LcBqvwcAAAAAG0_5v7agTDh0DyQG6BdHNgL0AmK"
