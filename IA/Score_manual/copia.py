@@ -52,7 +52,7 @@ try:
     for user in user_score_list:
         print("Name: " + user.name + " | Score: %.2f " % (user.score))
 
-        update_query = """ UPDATE score_usuario set score = %s WHERE usuario_id = %s """
+        update_query = """ INSERT INTO score_usuario (score, usuario_id) VALUES (%s, %s) """
         cursor.execute(update_query, (user.score, user.name))
 
         connection.commit()
