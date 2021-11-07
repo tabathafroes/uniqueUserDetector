@@ -63,7 +63,7 @@ public class UsuarioResource {
 	}
 	
 	@ApiOperation(value="Realiza a busca da lista de DTO de usuarios unicos")
-	@GetMapping("/buscarUsuarioComScoreDTO")
+	@GetMapping("/buscarUsuarioUnicoDTO")
 	public ResponseEntity<List<ListaUsuarioUnicoDTO>> buscarUsuarioUnicoDTO() {
 		List<ListaUsuarioUnicoDTO> listaUsuarioUnicoDTO = usuarioService.buscarUsuarioUnicoDTO();
 		return ResponseEntity.ok().body(listaUsuarioUnicoDTO);
