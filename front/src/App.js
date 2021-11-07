@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css';
 import Header from './components/Header/Header';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm'
+import Usuarios from './components/Usuarios/Usuarios';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           <Switch>
             <Route path="/" exact={true}>
               <RegistrationForm/>
+            </Route>
+            <Route path="/usuarios">
+              <Usuarios/>
             </Route>
           </Switch>
         </div>
