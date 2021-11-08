@@ -7,7 +7,6 @@ from psycopg2 import Error
 user_score_list = []
 
 # CONEXÃO DO BANCO DE DADOS
-
 try:
     connection = psycopg2.connect(user="oewnkeasnyvwck",
                                   password="2762727477cfd1a93e0f06bfe49179de169f8d2b710e6ece3a7803ad329cca76",
@@ -56,7 +55,7 @@ try:
         cursor.execute(update_query, (user.score, user.name))
 
         connection.commit()
-        print("Deu certo! Score atualizado no BANCO na tabela USUARIO dentro de TELEFONE")
+        print("Deu certo! Score atualizado no BANCO na tabela SCORE_USUARIO!")
     
 except (Exception, Error) as error:
     print("Deu ruim ao conectar com o PostgreSQL! Veja o erro a seguir: ", error)
@@ -65,8 +64,3 @@ finally:
         cursor.close()
         connection.close()
         print("PostgreSQL connection ending.")
-
-
-
-
-
