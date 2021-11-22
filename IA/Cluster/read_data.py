@@ -13,7 +13,7 @@ def readData(filename):
         reader = csv.DictReader(f)
         for row in reader:
             clean_row = [(k, pp.preProcess(v)) for (k, v) in row.items()]
-            row_id = int(row['Id'])
+            row_id = int(row['usuario_id'])
             data_d[row_id] = dict(clean_row)
 
     return data_d

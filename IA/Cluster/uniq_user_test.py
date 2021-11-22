@@ -4,29 +4,33 @@ from multiprocessing import Process
 import dedupe
 import os 
 import csv
+import read_db
+import write_db
 
 if __name__ == "__main__":
+    read_db.get_dados_entropicos_user()
+
     input_file = "dados100-final.csv"
     training_file = 'csv_example_training.json'
     settings_file = 'csv_example_learned_settings'
     output_file = 'csv_example_output.csv'
 
     fields = [
-            {'field': 'Id', 'type': 'String'},
-            {'field': 'cookies', 'type': 'String'},
-            {'field': 'Device Memory', 'type': 'String'},
-            {'field': 'hardware concurrency', 'type': 'String'},
-            {'field': 'IP', 'type': 'String'},
-            {'field': 'Lingua', 'type': 'String'},
-            {'field': 'Local_Storage', 'type': 'String'},
-            {'field': 'Plataforma', 'type': 'String'},
-            {'field': 'Session_Storage', 'type': 'String'},
-            {'field': 'Timezone', 'type': 'String'},
-            {'field': 'Touch_Support', 'type': 'String'},
-            {'field': 'Navegador', 'type': 'String'},
-            {'field': 'Versao Navegador', 'type': 'String'},
-            {'field': 'GPU', 'type': 'String'},
-            {'field': 'Hash', 'type': 'String'}
+            {'field': 'usuario_id', 'type': 'String'},
+            {'field': 'cookies_enabled', 'type': 'String'},
+            {'field': 'device_memory', 'type': 'String'},
+            {'field': 'hardware_concurrency', 'type': 'String'},
+            {'field': 'ip', 'type': 'String'},
+            {'field': 'languages', 'type': 'String'},
+            {'field': 'local_storage', 'type': 'String'},
+            {'field': 'platform', 'type': 'String'},
+            {'field': 'session_storage', 'type': 'String'},
+            {'field': 'timezone', 'type': 'String'},
+            {'field': 'touch_support', 'type': 'String'},
+            {'field': 'browser', 'type': 'String'},
+            {'field': 'browser_version', 'type': 'String'},
+            {'field': 'gpu', 'type': 'String'},
+            {'field': 'hash', 'type': 'String'}
         ]
 
     data_d = rd.readData(input_file)
@@ -35,24 +39,6 @@ if __name__ == "__main__":
             print('reading from', settings_file)
             with open(settings_file, 'rb') as f:
                 deduper = dedupe.StaticDedupe(f)
-    else:
-        fields = [
-            {'field': 'Id', 'type': 'String'},
-            {'field': 'cookies', 'type': 'String'},
-            {'field': 'Device Memory', 'type': 'String'},
-            {'field': 'hardware concurrency', 'type': 'String'},
-            {'field': 'IP', 'type': 'String'},
-            {'field': 'Lingua', 'type': 'String'},
-            {'field': 'Local_Storage', 'type': 'String'},
-            {'field': 'Plataforma', 'type': 'String'},
-            {'field': 'Session_Storage', 'type': 'String'},
-            {'field': 'Timezone', 'type': 'String'},
-            {'field': 'Touch_Support', 'type': 'String'},
-            {'field': 'Navegador', 'type': 'String'},
-            {'field': 'Versao Navegador', 'type': 'String'},
-            {'field': 'GPU', 'type': 'String'},
-            {'field': 'Hash', 'type': 'String'}
-        ]
 
     deduper = dedupe.Dedupe(fields)
 
@@ -85,9 +71,10 @@ if __name__ == "__main__":
                     "Cluster ID": cluster_id,
                     "confidence_score": score
                 }
-
+        clusters = []
         with open(output_file, 'w') as f_output, open(input_file) as f_input:
-
+            write_db.drop_dedupe_cluster()
+            write_db.create_dedupe_cluster()
             reader = csv.DictReader(f_input)
             fieldnames = ['Cluster ID', 'confidence_score'] + reader.fieldnames
 
@@ -95,11 +82,10 @@ if __name__ == "__main__":
             writer.writeheader()
 
             for row in reader:
-                row_id = int(row['Id'])
+                row_id = int(row['usuario_id'])
                 row.update(cluster_membership[row_id])
                 writer.writerow(row)
+                clusters.append(row)
+        write_db.write_dedupe_cluster(clusters)
 
     processData()
-    # p1 = Process(target=processData)
-    # p1.start()
-    # p1.join()
