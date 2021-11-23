@@ -3,4 +3,4 @@ unidecode
 pytest-parallel
 dj-database-url>=0.3.0
 psycopg2>=2.5.4
-shutil
+pytest-shutil
