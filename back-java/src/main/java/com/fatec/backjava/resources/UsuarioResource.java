@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fatec.backjava.domain.Usuario;
 import com.fatec.backjava.dto.DadosDTO;
 import com.fatec.backjava.dto.DadosEntropicosUserDTO;
-import com.fatec.backjava.dto.ListaUsuarioUnicoDTO;
 import com.fatec.backjava.dto.UsuarioDTO;
+import com.fatec.backjava.dto.UsuarioDedupeDTO;
+import com.fatec.backjava.dto.UsuarioKmeansDTO;
+import com.fatec.backjava.dto.UsuarioUnicoDTO;
 import com.fatec.backjava.services.DadosEntropicosUserService;
 import com.fatec.backjava.services.UsuarioService;
 
@@ -64,16 +66,23 @@ public class UsuarioResource {
 	
 	@ApiOperation(value="Realiza a busca da lista de DTO de usuarios unicos")
 	@GetMapping("/buscarUsuarioUnicoDTO")
-	public ResponseEntity<List<ListaUsuarioUnicoDTO>> buscarUsuarioUnicoDTO() {
-		List<ListaUsuarioUnicoDTO> listaUsuarioUnicoDTO = usuarioService.buscarUsuarioUnicoDTO();
+	public ResponseEntity<List<UsuarioUnicoDTO>> buscarUsuarioUnicoDTO() {
+		List<UsuarioUnicoDTO> listaUsuarioUnicoDTO = usuarioService.buscarUsuarioUnicoDTO();
 		return ResponseEntity.ok().body(listaUsuarioUnicoDTO);
 	}
 
 	@ApiOperation(value="Realiza a busca da lista de DTO de usuarios agrupados pelo kmeans")
 	@GetMapping("/buscarListaUsuarioKmeansDTO")
-	public ResponseEntity<List<ListaUsuarioKmeansDTO>> buscarListaUsuarioKmeansDTO() {
-		List<ListaUsuarioKmeansDTO> listaUsuarioKmeansDTO = usuarioService.buscarListaUsuarioKmeansDTO();
+	public ResponseEntity<List<UsuarioKmeansDTO>> buscarListaUsuarioKmeansDTO() {
+		List<UsuarioKmeansDTO> listaUsuarioKmeansDTO = usuarioService.buscarListaUsuarioKmeansDTO();
 		return ResponseEntity.ok().body(listaUsuarioKmeansDTO);
+	}
+	
+	@ApiOperation(value="Realiza a busca da lista de DTO de usuarios agrupados pelo dedupe")
+	@GetMapping("/buscarListaUsuarioDedupeDTO")
+	public ResponseEntity<List<UsuarioDedupeDTO>> buscarListaUsuarioDedupeDTO() {
+		List<UsuarioDedupeDTO> listaUsuarioDedupeDTO = usuarioService.buscarListaUsuarioDedupeDTO();
+		return ResponseEntity.ok().body(listaUsuarioDedupeDTO );
 	}
 
 }

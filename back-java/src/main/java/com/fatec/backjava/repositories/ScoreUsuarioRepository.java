@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.fatec.backjava.domain.Usuario;
-import com.fatec.backjava.dto.ListaUsuarioUnicoDTO;
+import com.fatec.backjava.dto.UsuarioUnicoDTO;
 
 @Repository
 public interface ScoreUsuarioRepository extends JpaRepository<Usuario, Long>{

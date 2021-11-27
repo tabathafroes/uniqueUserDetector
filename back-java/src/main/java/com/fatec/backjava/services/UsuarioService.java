@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.backjava.domain.Usuario;
-import com.fatec.backjava.dto.ListaUsuarioUnicoDTO;
 import com.fatec.backjava.dto.UsuarioDTO;
+import com.fatec.backjava.dto.UsuarioDedupeDTO;
+import com.fatec.backjava.dto.UsuarioKmeansDTO;
+import com.fatec.backjava.dto.UsuarioUnicoDTO;
 import com.fatec.backjava.repositories.UsuarioRepository;
 
 @Service
@@ -35,11 +37,15 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public List<ListaUsuarioUnicoDTO> buscarUsuarioUnicoDTO() {
+	public List<UsuarioUnicoDTO> buscarUsuarioUnicoDTO() {
 		return usuarioRepository.buscarUsuarioUnicoDTO();
 	}
 
-	public List<ListaUsuarioKmeansDTO> buscarListaUsuarioKmeansDTO() {
+	public List<UsuarioKmeansDTO> buscarListaUsuarioKmeansDTO() {
 		return usuarioRepository.buscarListaUsuarioKmeansDTO();
+	}
+	
+	public List<UsuarioDedupeDTO> buscarListaUsuarioDedupeDTO() {
+		return usuarioRepository.buscarListaUsuarioDedupeDTO();
 	}
 }
