@@ -19,4 +19,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 			+ " and u.id = de.usuario.id"
 			+ " ORDER BY u.id ASC")
 	List<ListaUsuarioUnicoDTO> buscarUsuarioUnicoDTO();
+
+	@Query("select new com.fatec.backjava.dto.ListaUsuarioKmeansDTO(u.id, u.nome, u.email, kc.cluster)"
+	+ " from Usuario u, KmeansCluster kc"
+	+ " where kc.usuario_id = u.usuario_id"
+	+ " order by kc.cluster asc")
+	List<ListaUsuarioKmeansDTO> buscarListaUsuarioKmeansDTO();
 }

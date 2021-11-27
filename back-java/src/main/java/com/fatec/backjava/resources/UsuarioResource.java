@@ -69,4 +69,11 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(listaUsuarioUnicoDTO);
 	}
 
+	@ApiOperation(value="Realiza a busca da lista de DTO de usuarios agrupados pelo kmeans")
+	@GetMapping("/buscarListaUsuarioKmeansDTO")
+	public ResponseEntity<List<ListaUsuarioKmeansDTO>> buscarListaUsuarioKmeansDTO() {
+		List<ListaUsuarioKmeansDTO> listaUsuarioKmeansDTO = usuarioService.buscarListaUsuarioKmeansDTO();
+		return ResponseEntity.ok().body(listaUsuarioKmeansDTO);
+	}
+
 }

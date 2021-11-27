@@ -38,4 +38,8 @@ public class UsuarioService {
 	public List<ListaUsuarioUnicoDTO> buscarUsuarioUnicoDTO() {
 		return usuarioRepository.buscarUsuarioUnicoDTO();
 	}
+
+	public List<ListaUsuarioKmeansDTO> buscarListaUsuarioKmeansDTO() {
+		return usuarioRepository.buscarListaUsuarioKmeansDTO();
+	}
 }
