@@ -6,14 +6,7 @@ import os
 import csv
 import read_db
 import write_db
-import shutil
 
-def configure_dedupe():
-    path = os.getcwd() + '\\lib_dedupe\\convenience.py'
-    dest = os.getcwd() + '\\.venv\\Lib\\site-packages\\dedupe\\convenience.py'
-    shutil.copy(path, dest) 
-
-configure_dedupe()
 
 if __name__ == "__main__":
     read_db.get_dados_entropicos_user()
